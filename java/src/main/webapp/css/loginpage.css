@@ -1,0 +1,426 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: #3b679e;
+    background: -moz-linear-gradient(-45deg, #3b679e 0%, #2b88d9 27%, #207cca 69%, #7db9e8 100%);
+    background: -webkit-linear-gradient(-45deg, #3b679e 0%, #2b88d9 27%, #207cca 69%, #7db9e8 100%);
+    background: linear-gradient(135deg, #3b679e 0%, #2b88d9 27%, #207cca 69%, #7db9e8 100%);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3b679e', endColorstr='#7db9e8', GradientType=1);
+    color: #fff;
+}
+
+a {
+    color: #f0ad4e;
+}
+
+.lightbox {
+    background: rgba(118, 180, 229, 0.3);
+    border: 1px solid #76b4e5;
+    padding: 1em 1em 0em;
+    margin-bottom: 1em;
+}
+
+.errorbox {
+    background: rgba(255, 0, 0, 0.8);
+    border: 3px solid rgb(118, 180, 229);
+    padding: 0.625em;
+    margin: 1.875em 0em;
+    font-weight: 700;
+}
+
+/*logo start*/
+@import url(http://fonts.googleapis.com/css?family=Arvo:700);
+@import url(http://fonts.googleapis.com/css?family=Seaweed+Script);
+
+.plate {
+    max-width: 25.625em;
+    margin: 0em auto 2.5em;
+    margin-top:20%;
+}
+
+.plateb {
+    max-width: 25.625em;
+    margin: 0em auto 2.5em;
+    margin-top:2%;
+}
+
+.shadow {
+    color: #fff;
+    font-family: Arvo;
+    font-weight: bold;
+    line-height: 0.8em;
+    letter-spacing: 0.1em;
+    transform: scaleY(0.7);
+    -webkit-transform: scaleY(0.7);
+    -moz-transform: scaleY(0.7);
+    margin: 0;
+    text-align: center;
+}
+
+.script {
+    font-family: "Seaweed Script";
+    color: #fff;
+    text-align: center;
+    font-size: 2.5em;
+    position: relative;
+    margin: 0 auto;
+}
+
+.script span {
+    background-color: #2582d2;
+    padding: 0 0.3em;
+}
+
+.script:before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    width: 100%;
+    border-bottom: 3px solid #fff;
+}
+
+.text3 {
+    font-size: 3.7em;
+}
+
+.product-owner {
+    text-align: right;
+    line-height: 0;
+    font-style: italic;
+}
+
+/*logo end*/
+
+.avatar {
+    background: #fff url("/img/Skull-3-icon.png") top center no-repeat;
+    width: 10em;
+    height: 10em;
+    border-radius: 5em;
+    margin: 0 auto 1em;
+    border: 0.215em solid #76b4e5;
+    overflow: hidden;
+}
+
+.avatar img{
+    width: 10em;
+}
+
+.btn-login {
+    text-align: center;
+    background: #76b4e5;
+    color: #fff;
+    width: 12.5em;
+    margin: 0 auto;
+    display: block;
+    font-weight: 700;
+}
+
+.status {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 1.25em 0;
+}
+
+.logout-link {
+    text-align: center;
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    padding: 0.625em;
+}
+
+.boxfield {
+    height:64px;
+    width:100%
+}
+
+.lightbox .title, .emptybox .title {
+    font-size: 18px;
+    font-weight:700;
+    margin: 10px auto 30px;
+}
+
+.lightbox .btn-margin,.emptybox .btn-margin  {
+    margin: 0 0 20px;
+}
+
+.lightbox select.form-control, .emptybox select.form-control, .selectedData {
+    background: #76b4e5;
+    border: 1px solid #76b4e5;
+    color: #fff;
+    border-radius: 0px;
+    font-weight: 700;
+    margin: 0 0 20px;
+}
+
+.headKatCz, .headCzSzcz, .contaKatCz, .contbKatCz, .contaCzSzcz, .contbCzSzcz, .dropdownStyle {
+    background: #76b4e5;
+    border: 1px solid #76b4e5;
+    color: #fff;
+    border-radius: 3px;
+    margin: 0 0 2px;
+}
+#headKatCz, #headCzSzcz, #contaKatCz, #contbKatCz, #contaCzSzcz, #contbCzSzcz, #dropdownStyle {
+    background: #76b4e5;
+    border: 1px solid #76b4e5;
+    color: #fff;
+    border-radius: 3px;
+    margin: 0 0 2px;
+}
+
+
+#headKatCz {
+    margin-bottom: 10px;
+}
+
+#myFooter {
+    color: #fff;
+    background: #76b4e5;
+    border: 1px solid #76b4e5;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-botom: 1em;
+    font-size: 1.1em;
+}
+
+#modale {
+    color: black;
+}
+
+#mojeTresci {
+    display: inline;
+}
+
+#breadcrumbsStyle, #navbarStyle {
+    color: #fff;
+    background: #76b4e5;
+    border: 1px solid #76b4e5;
+    border-radius: 3px;
+}
+.navbarStyle {
+    color: #fff;
+    background: #76b4e5;
+    border: 1px solid #76b4e5;
+    border-radius: 3px;
+    font-weight: 700;
+}
+
+.lightbox-top-margin {
+    margin-top: 10px;
+}
+
+.selectedData {
+    padding: 7px;
+    text-align: left;
+}
+
+.selectedData .fa-check {
+    font-size: 1.6em;
+    margin: -5px 10px 0 0;
+}
+
+/*progresbar*/
+.header-progress-container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.header-progress-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.header-progress-item {
+    position: relative;
+    display: inline-block;
+    width: 135px;
+    text-align: center;
+    line-height: 3em;
+}
+
+.header-progress-item:after {
+    position: absolute;
+    display: block;
+    z-index: 1;
+    top: -2px;
+    left: -65px;
+    height: 2px;
+    width: 135px;
+    content: "";
+    background-color: #fff;
+}
+
+.header-progress-item:before {
+    position: absolute;
+    z-index: 2;
+    top: -6px;
+    left: 65px;
+    height: 10px;
+    width: 10px;
+    border-radius: 1.2em;
+    border: none;
+    line-height: 1.2em;
+    content: " ";
+    background-color: #fff;
+}
+
+.header-progress-item:first-child:after {
+    display: none;
+}
+
+.header-progress-item.done {
+    color: #fff;
+}
+
+.header-progress-item.todo {
+    color:#76b4e5;
+}
+.header-progress-item.todo:after {
+    background: #76b4e5;
+}
+.header-progress-item.todo:before {
+    background-color: #76b4e5;
+}
+/*progresbar end*/
+
+h1.errorAlert {
+    font-size: 130px;
+}
+
+/*searchable lists of categories and parts*/
+
+#myInput {
+    background-color: #fff; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    color: black;
+    padding: 5px 10px 5px 20px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    border-radius: 3px;
+    margin-top: 9px; /* Add some space below the input */
+    margin-bottom: 11px; /* Add some space below the input */
+}
+
+#myUL {
+    list-style-type: none;
+    padding: 0px;
+    width: 100%;
+    margin: 0;
+    display: block;
+}
+
+li a :hover {
+    color: black;
+}
+
+#myUL li a {
+    display: block; /* Make it into a block element to fill the whole list */
+    background: rgba(118, 180, 229, 0.3);
+    border: 1px solid #76b4e5;
+    padding: 0.2em;
+    margin-bottom: 0.5em;
+    width: 100%;
+    display: table;
+}
+
+.auctionList {
+    margin-top: 10px;
+    padding:0px;
+
+}
+.auctionList li:hover {
+    border: 1px solid #0364b1;
+}
+.auctionList li {
+    background: rgba(118, 180, 229, 0.3);
+    border: 1px solid #76b4e5;
+    padding: 0.2em;
+    margin-bottom: 0.5em;
+    width:100%;
+    display: table;
+}
+.auctionList li a {
+    display: table-row;
+    text-decoration: none;
+    color: powderblue;
+}
+
+.auctionList li a>div{
+    display: table-cell;
+    vertical-align: middle;
+}
+.auctionList li a>div>img {
+    border: 2px solid #76b4e5;
+}
+.auctionList li a>div:nth-child(1){
+    height:80px
+}
+.auctionList li a>div:nth-child(2){
+    font-weight: 700;
+    color: powderblue;
+}
+.auctionList li a>div:nth-child(3){
+    width:100px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#adminpanel.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #237fce;
+}
+#adminpanel.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #76b4e5;
+}
+#adminpanel.table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #76b4e5;
+}
+#adminpanel.table-bordered {
+    border: 1px solid #76b4e5;
+}
+.adminpanel .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 1px solid #76b4e5;
+}
+.adminpanel .table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #237fce;
+}
+.adminpanel .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #76b4e5;
+}
+.adminpanel .table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #76b4e5;
+}
+.adminpanel .table-bordered {
+    border: 1px solid #76b4e5;
+}
+.adminpanel .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 1px solid #76b4e5;
+}
+
+#listyKatCz a {
+    background: rgba(118, 180, 229, 0.3);
+    border: 1px solid #76b4e5;
+    padding: 0.2em;
+    margin-bottom: 0.5em;
+    width: 100%;
+    display: table;
+}
+table form {
+    margin:0px
+}

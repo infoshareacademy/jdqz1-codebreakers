@@ -1,0 +1,29 @@
+version: '2'
+services:
+  dbase:
+    container_name: "dbase"
+    image: mysql:5.5.41
+    environment:
+      - MYSQL_DATABASE=statistics
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_ROOT_PASSWORD=pass
+    ports:
+      - 8711:3306
+
+
+  webapplication:
+    container_name: "webapplication"
+    build: .
+    environment:
+      - MYSQL_URI=dbase:8711
+      - MYSQL_DATABASE=statistics
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_ROOT_PASSWORD=pass
+    ports:
+      - 8710:8080
+      - 8712:9990
+
+    links:
+      - "dbase:webapplication"
