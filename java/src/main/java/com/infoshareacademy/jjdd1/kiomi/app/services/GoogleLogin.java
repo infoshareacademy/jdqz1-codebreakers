@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.infoshareacademy.jjdd1.kiomi.app.model.cars.AdministratorEmails;
 import com.infoshareacademy.jjdd1.kiomi.app.model.cars.GoogleUser;
 import com.infoshareacademy.jjdd1.kiomi.app.services.users.UsersList;
+import com.infoshareacademy.jjdd1.kiomi.app.services.users.UsersPersist;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -101,8 +102,14 @@ public class GoogleLogin extends HttpServlet {
 
                 EntityManagerFactory emf = Persistence.createEntityManagerFactory("database-autoparts");
                 EntityManager entityManager = emf.createEntityManager();
-                UsersList member = entityManager.createQuery("SELECT m FROM  UsersList m WHERE m.email = :email ORDER BY m.email", UsersList.class)
-                        .setParameter("email", googleUser.getEmail()).getSingleResult();
+                try {
+                    UsersList member = entityManager.createQuery("SELECT m FROM  UsersList m WHERE m.email = :email " +
+                            "ORDER BY m.email", UsersList.class)
+                            .setParameter("email", googleUser.getEmail()).getSingleResult();
+                }catch (Exception e){
+                    e.getCause();
+                    new UsersPersist().addUser(new UsersList());
+                }
 
                 LOGGER.debug("Lista membersów: " + member.getFirstname());
 
