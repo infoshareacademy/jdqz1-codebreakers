@@ -108,7 +108,9 @@ public class GoogleLogin extends HttpServlet {
                             .setParameter("email", googleUser.getEmail()).getSingleResult();
                 }catch (Exception e){
                     e.getCause();
-                    new UsersPersist().addUser(new UsersList());
+                    UsersList usersList = new UsersList();
+                    usersList.setEmail();
+                    new UsersPersist().addUser(new UsersList().setEmail(googleUser.getEmail()));
                 }
 
                 LOGGER.debug("Lista membersów: " + member.getFirstname());
