@@ -99,30 +99,40 @@ public class GoogleLogin extends HttpServlet {
 
                 AdministratorEmails administratorEmails = new AdministratorEmails();
 
-
                 EntityManagerFactory emf = Persistence.createEntityManagerFactory("database-autoparts");
                 EntityManager entityManager = emf.createEntityManager();
+                UsersList member = null;
                 try {
-                    UsersList member = entityManager.createQuery("SELECT m FROM  UsersList m WHERE m.email = :email " +
+                    member = entityManager.createQuery("SELECT m FROM  UsersList m WHERE m.email = :email " +
                             "ORDER BY m.email", UsersList.class)
                             .setParameter("email", googleUser.getEmail()).getSingleResult();
-                }catch (Exception e){
+
+                } catch (Exception e){
                     e.getCause();
+                    LOGGER.debug("Nie znaleziono użytkownika w bazie");
                     UsersList usersList = new UsersList();
-                    usersList.setEmail();
-                    new UsersPersist().addUser(new UsersList().setEmail(googleUser.getEmail()));
+                    usersList.setEmail(googleUser.getEmail());
+                    usersList.setFirstname(googleUser.getGiven_name());
+                    usersList.setLastname(googleUser.getFamily_name());
+                    usersList.setRole(1);
+                    new UsersPersist().addUser(usersList);
+                    member = entityManager.createQuery("SELECT m FROM  UsersList m WHERE m.email = :email " +
+                            "ORDER BY m.email", UsersList.class)
+                            .setParameter("email", googleUser.getEmail()).getSingleResult();
                 }
 
-                LOGGER.debug("Lista membersów: " + member.getFirstname());
+//                LOGGER.debug("Lista membersów: " + member.getFirstname());
 
-//                if (administratorEmails.isAdministrator(googleUser.getEmail()) == 1) {
                 if (!member.getEmail().isEmpty()) {
 //                    sessionData.logUser(googleUser.getGiven_name(), googleUser.getFamily_name(), googleUser.getPicture(), googleUser.getEmail());
                     sessionData.logUser(member.getFirstname(), member.getLastname(), googleUser.getPicture(), member.getEmail(), member.getRole());
                     resp.sendRedirect("/googlelogin");
-                } else {
-                    req.setAttribute("error", "Nie ma takiego użytkownika. Dostęp zabroniony.");
                 }
+
+//                if (administratorEmails.isAdministrator(googleUser.getEmail()) == 1) {
+//                 else {
+//                    req.setAttribute("error", "Nie ma takiego użytkownika. Dostęp zabroniony.");
+//                }
             }
         }
         Map<String, String> sessionUser = new HashMap<>();

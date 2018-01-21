@@ -14,8 +14,6 @@ public class UsersPersist implements IUsers {
             Persistence.createEntityManagerFactory("database-autoparts");
     private EntityManager entityManager = emf.createEntityManager();
 
-
-
     @Override
     @Transactional
     public void addUser(UsersList userToAdd) {
