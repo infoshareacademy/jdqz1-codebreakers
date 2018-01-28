@@ -7,11 +7,11 @@ import java.util.List;
  */
 public interface IUsers {
 
-    void addUser(UsersList userToAdd);
+    void addUser(User userToAdd);
 
     void removeUser(String emailOfUserToRemove);
 
 
-    List<UsersList> getAllUsers();
+    List<User> getAllUsers();
 
 }

@@ -10,7 +10,7 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 import com.google.gson.Gson;
 import com.infoshareacademy.jjdd1.kiomi.app.model.cars.AdministratorEmails;
 import com.infoshareacademy.jjdd1.kiomi.app.model.cars.GoogleUser;
-import com.infoshareacademy.jjdd1.kiomi.app.services.users.UsersList;
+import com.infoshareacademy.jjdd1.kiomi.app.services.users.User;
 import com.infoshareacademy.jjdd1.kiomi.app.services.users.UsersPersist;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -96,24 +96,26 @@ public class GoogleLogin extends HttpServlet {
                 String googleJson = response.getBody();
                 Gson gson = new Gson();
                 GoogleUser googleUser = gson.fromJson(googleJson, GoogleUser.class);
+                UsersPersist usersPersist = new UsersPersist();
+
 
                 AdministratorEmails administratorEmails = new AdministratorEmails();
 
                 EntityManagerFactory emf = Persistence.createEntityManagerFactory("database-autoparts");
                 EntityManager entityManager = emf.createEntityManager();
-                UsersList member = null;
+                User member = null;
                 try {
-                    member = UsersPersist.findUserInDatabase(googleUser);
+                    member = usersPersist.findUserInDatabase(googleUser);
                 } catch (Exception e){
                     e.getCause();
                     LOGGER.debug("Nie znaleziono użytkownika w bazie");
-                    UsersList usersList = new UsersList();
-                    usersList.setEmail(googleUser.getEmail());
-                    usersList.setFirstname(googleUser.getGiven_name());
-                    usersList.setLastname(googleUser.getFamily_name());
-                    usersList.setRole(1);
-                    new UsersPersist().addUser(usersList);
-                    member = UsersPersist.findUserInDatabase(usersList);
+                    User user = new User();
+                    user.setEmail(googleUser.getEmail());
+                    user.setFirstname(googleUser.getGiven_name());
+                    user.setLastname(googleUser.getFamily_name());
+                    user.setRole(1);
+                    usersPersist.addUser(user);
+                    member = usersPersist.findUserInDatabase(googleUser);
                 }
 
 //                LOGGER.debug("Lista membersów: " + member.getFirstname());

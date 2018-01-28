@@ -18,7 +18,7 @@ public class UsersPersist implements IUsers {
 
     @Override
     @Transactional
-    public void addUser(UsersList userToAdd) {
+    public void addUser(User userToAdd) {
             entityManager.getTransaction().begin();
             entityManager.persist(userToAdd);
             entityManager.getTransaction().commit();
@@ -32,7 +32,7 @@ public class UsersPersist implements IUsers {
 
 
             Query q = entityManager.
-                    createQuery("DELETE FROM UsersList u WHERE u.email = :email").
+                    createQuery("DELETE FROM User u WHERE u.email = :email").
                     setParameter("email", emailOfUserToRemove);
             entityManager.getTransaction().begin();
             q.executeUpdate();
@@ -40,23 +40,23 @@ public class UsersPersist implements IUsers {
 
     }
 
-    public UsersList findUserInDatabase(GoogleUser googleUser) {
+    public User findUserInDatabase(GoogleUser googleUser) {
 
-        UsersList usersList = entityManager.
-                createQuery("SELECT m FROM  UsersList m WHERE m.email = :email " +
-                        "ORDER BY m.email", UsersList.class)
+        User user = entityManager.
+                createQuery("SELECT m FROM  User m WHERE m.email = :email " +
+                        "ORDER BY m.email", User.class)
                 .setParameter("email", googleUser.getEmail()).getSingleResult();
-        return usersList;
+        return user;
 
     }
 
 
     @Override
     @Transactional
-    public List<UsersList> getAllUsers() {
+    public List<User> getAllUsers() {
 
-        TypedQuery<UsersList> typedQuery = entityManager
-                .createQuery("SELECT u FROM UsersList u", UsersList.class);
+        TypedQuery<User> typedQuery = entityManager
+                .createQuery("SELECT u FROM User u", User.class);
 
         return typedQuery.getResultList();
     }

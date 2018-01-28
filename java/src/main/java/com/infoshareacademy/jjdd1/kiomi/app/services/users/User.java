@@ -10,8 +10,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "members")
-public class UsersList implements Serializable {
-    private static final Logger LOGGER = LogManager.getLogger(UsersList.class);
+public class User implements Serializable {
+    private static final Logger LOGGER = LogManager.getLogger(User.class);
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -35,7 +35,7 @@ public class UsersList implements Serializable {
     @Column(name = "role", length = 1)
     private Integer role;
 
-    public UsersList() {
+    public User() {
     }
 
 

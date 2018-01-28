@@ -4,7 +4,7 @@ import com.infoshareacademy.jjdd1.kiomi.app.services.CarsDataLoader2;
 
 import com.infoshareacademy.jjdd1.kiomi.app.services.MailSender;
 import com.infoshareacademy.jjdd1.kiomi.app.services.MembersDataBuilder;
-import com.infoshareacademy.jjdd1.kiomi.app.services.users.UsersList;
+import com.infoshareacademy.jjdd1.kiomi.app.services.users.User;
 
 
 //import com.infoshareacademy.jjdd1.kiomi.app.services.MailSender;
@@ -39,7 +39,7 @@ public class BrandsCache {
     @Schedule(minute = "*", hour = "1")
     @PostConstruct
     public void starter() {
-        UsersList member = new UsersList();
+        User member = new User();
         member.setEntryDate(new Date());
         member.setEmail("azielazny@gmail.com");
         member.setFirstname("Arkadiusz");
@@ -47,7 +47,7 @@ public class BrandsCache {
         member.setRole(1);
         LOGGER.debug("Creating new entity object: " + member.toString());
         membersDataBuilder.addEntryToDatabase(member);
-        UsersList member2 = new UsersList();
+        User member2 = new User();
         member2.setEntryDate(new Date());
         member2.setEmail("kiomi.info@gmail.com");
         member2.setFirstname("Kiomi");
@@ -55,7 +55,7 @@ public class BrandsCache {
         member2.setRole(0);
         LOGGER.debug("Creating new entity object: " + member2.toString());
         membersDataBuilder.addEntryToDatabase(member2);
-        UsersList member3 = new UsersList();
+        User member3 = new User();
         member3.setEntryDate(new Date());
         member3.setEmail("isaloginjava@gmail.com");
         member3.setFirstname("Infoshare");
