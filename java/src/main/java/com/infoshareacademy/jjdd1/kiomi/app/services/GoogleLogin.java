@@ -103,10 +103,7 @@ public class GoogleLogin extends HttpServlet {
                 EntityManager entityManager = emf.createEntityManager();
                 UsersList member = null;
                 try {
-                    member = entityManager.createQuery("SELECT m FROM  UsersList m WHERE m.email = :email " +
-                            "ORDER BY m.email", UsersList.class)
-                            .setParameter("email", googleUser.getEmail()).getSingleResult();
-
+                    member = UsersPersist.findUserInDatabase(googleUser);
                 } catch (Exception e){
                     e.getCause();
                     LOGGER.debug("Nie znaleziono użytkownika w bazie");
@@ -116,9 +113,7 @@ public class GoogleLogin extends HttpServlet {
                     usersList.setLastname(googleUser.getFamily_name());
                     usersList.setRole(1);
                     new UsersPersist().addUser(usersList);
-                    member = entityManager.createQuery("SELECT m FROM  UsersList m WHERE m.email = :email " +
-                            "ORDER BY m.email", UsersList.class)
-                            .setParameter("email", googleUser.getEmail()).getSingleResult();
+                    member = UsersPersist.findUserInDatabase(usersList);
                 }
 
 //                LOGGER.debug("Lista membersów: " + member.getFirstname());

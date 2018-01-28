@@ -1,5 +1,7 @@
 package com.infoshareacademy.jjdd1.kiomi.app.services.users;
 
+import com.infoshareacademy.jjdd1.kiomi.app.model.cars.GoogleUser;
+
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -37,6 +39,17 @@ public class UsersPersist implements IUsers {
             entityManager.getTransaction().commit();
 
     }
+
+    public UsersList findUserInDatabase(GoogleUser googleUser) {
+
+        UsersList usersList = entityManager.
+                createQuery("SELECT m FROM  UsersList m WHERE m.email = :email " +
+                        "ORDER BY m.email", UsersList.class)
+                .setParameter("email", googleUser.getEmail()).getSingleResult();
+        return usersList;
+
+    }
+
 
     @Override
     @Transactional
