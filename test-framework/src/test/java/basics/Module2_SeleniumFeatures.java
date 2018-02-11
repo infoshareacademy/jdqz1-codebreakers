@@ -176,10 +176,10 @@ public class Module2_SeleniumFeatures {
 
         sleep1k();
 
-        char randomCharacter1 = randomCharacter();
-        char randomCharacter2 = randomCharacter();
+        String randomStringTwoChar = new String();
+        randomStringTwoChar = randomString();
 
-        fieldEmailRegister.sendKeys("aaa@bbb." + randomCharacter1 + randomCharacter2);
+        fieldEmailRegister.sendKeys("aaa@bbb." + randomStringTwoChar);
 
         WebElement fieldFirstPasswordRegister = driver.findElement(By.xpath("(//div[2]/input[1])[2]"));
         fieldFirstPasswordRegister.sendKeys("123456");
@@ -239,9 +239,16 @@ public class Module2_SeleniumFeatures {
         }
     }
 
-    public static char randomCharacter() {
-        Random r = new Random();
-        char c = (char)(r.nextInt(26) + 'a');
-        return c;
+    protected String randomString() {
+        String SALTCHARS = "abcdefghijklmnopqrstqwxyz";
+        StringBuilder salt = new StringBuilder();
+        Random random = new Random();
+        while (salt.length() < 2) { // length of the random string.
+            int index = (int) (random.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
     }
+
 }
