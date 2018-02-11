@@ -197,8 +197,38 @@ public class Module2_SeleniumFeatures {
         sleep1k();
 
         WebElement buttonNavWylogujSie = driver.findElement(By.xpath("//a[@href='/'][contains(text(),'Wyloguj się')]"));
-        assertEquals("butoonNavWylogusSie is not correct", "Wyloguj się", buttonNavWylogujSie.getText());
+        assertEquals("buttonNavWylogusSie is not correct", "Wyloguj się", buttonNavWylogujSie.getText());
 
+    }
+
+    @Test
+    public void priceLessLoginWrongCredentials() {
+
+        driver.get("http://app.codebreakers.jdqz1.is-academy.pl/");
+
+        sleep1k();
+
+        WebElement fieldEmailLogin = driver.findElement(By.xpath("(//input[@id='formHorizontalEmail'])[1]"));
+        fieldEmailLogin.sendKeys("qwerdqwefafaf@sadfasf.safas");
+
+        WebElement fieldHasloLogin = driver.findElement(By.xpath("(//input[@id='formHorizontalPassword'])[1]"));
+        fieldHasloLogin.sendKeys("asdfadsfasdfasfasfasadd");
+
+        WebElement buttonZalogujSie = driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Zaloguj " +
+                "się')]"));
+        buttonZalogujSie.click();
+
+        sleep1k();
+
+        WebElement divAlert = driver.findElement(By.xpath("//div[@role='alert']"));
+        assertEquals("Alert text is not correct.", "Nieprawidłowe dane logowania. Spróbuj ponownie", divAlert.getText());
+
+
+    }
+
+    @After
+    public void tearDown() {
+        driver.close();
     }
 
     private void sleep1k() {
@@ -207,11 +237,6 @@ public class Module2_SeleniumFeatures {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    @After
-    public void tearDown() {
-        driver.close();
     }
 
     public static char randomCharacter() {
