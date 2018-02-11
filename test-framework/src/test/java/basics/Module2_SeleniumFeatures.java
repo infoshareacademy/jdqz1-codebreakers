@@ -13,6 +13,7 @@ import utils.waits.CustomWait;
 
 import java.io.File;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -158,12 +159,64 @@ public class Module2_SeleniumFeatures {
 
         WebElement clickSingleRadioButton = driver.findElement(By.xpath("//input[@value='single']"));
         clickSingleRadioButton.click();
+    }
 
+    @Test
+    public void priceLessRegisterWrongEmailCountry() {
+        driver.get("http://app.codebreakers.jdqz1.is-academy.pl/");
 
+        sleep1k();
+
+        WebElement buttonNavZarejestruj = driver.findElement(By.xpath("//a[@id='noanim-tab-example-tab-2']"));
+        buttonNavZarejestruj.click();
+
+        sleep1k();
+
+        WebElement fieldEmailRegister = driver.findElement(By.xpath("(//input[@id='formHorizontalEmail'])[2]"));
+
+        sleep1k();
+
+        char randomCharacter1 = randomCharacter();
+        char randomCharacter2 = randomCharacter();
+
+        fieldEmailRegister.sendKeys("aaa@bbb." + randomCharacter1 + randomCharacter2);
+
+        WebElement fieldFirstPasswordRegister = driver.findElement(By.xpath("(//div[2]/input[1])[2]"));
+        fieldFirstPasswordRegister.sendKeys("123456");
+
+        sleep1k();
+
+        WebElement fieldSecondPasswordRegister = driver.findElement(By.xpath("//div[3]/input[1]"));
+        fieldSecondPasswordRegister.sendKeys("123456");
+
+        sleep1k();
+
+        WebElement buttonZarejestrujSie = driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Zarejestruj się')]"));
+        buttonZarejestrujSie.click();
+
+        sleep1k();
+
+        WebElement buttonNavWylogujSie = driver.findElement(By.xpath("//a[@href='/'][contains(text(),'Wyloguj się')]"));
+        assertEquals("butoonNavWylogusSie is not correct", "Wyloguj się", buttonNavWylogujSie.getText());
+
+    }
+
+    private void sleep1k() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @After
     public void tearDown() {
         driver.close();
+    }
+
+    public static char randomCharacter() {
+        Random r = new Random();
+        char c = (char)(r.nextInt(26) + 'a');
+        return c;
     }
 }
