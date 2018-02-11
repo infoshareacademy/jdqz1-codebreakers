@@ -10,7 +10,8 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 import com.google.gson.Gson;
 import com.infoshareacademy.jjdd1.kiomi.app.model.cars.AdministratorEmails;
 import com.infoshareacademy.jjdd1.kiomi.app.model.cars.GoogleUser;
-import com.infoshareacademy.jjdd1.kiomi.app.services.users.UsersList;
+import com.infoshareacademy.jjdd1.kiomi.app.services.users.User;
+import com.infoshareacademy.jjdd1.kiomi.app.services.users.UsersPersist;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -95,25 +96,40 @@ public class GoogleLogin extends HttpServlet {
                 String googleJson = response.getBody();
                 Gson gson = new Gson();
                 GoogleUser googleUser = gson.fromJson(googleJson, GoogleUser.class);
+                UsersPersist usersPersist = new UsersPersist();
+
 
                 AdministratorEmails administratorEmails = new AdministratorEmails();
 
-
                 EntityManagerFactory emf = Persistence.createEntityManagerFactory("database-autoparts");
                 EntityManager entityManager = emf.createEntityManager();
-                UsersList member = entityManager.createQuery("SELECT m FROM  UsersList m WHERE m.email = :email ORDER BY m.email", UsersList.class)
-                        .setParameter("email", googleUser.getEmail()).getSingleResult();
+                User member = null;
+                try {
+                    member = usersPersist.findUserInDatabase(googleUser);
+                } catch (Exception e){
+                    e.getCause();
+                    LOGGER.debug("Nie znaleziono użytkownika w bazie");
+                    User user = new User();
+                    user.setEmail(googleUser.getEmail());
+                    user.setFirstname(googleUser.getGiven_name());
+                    user.setLastname(googleUser.getFamily_name());
+                    user.setRole(1);
+                    usersPersist.addUser(user);
+                    member = usersPersist.findUserInDatabase(googleUser);
+                }
 
-                LOGGER.debug("Lista membersów: " + member.getFirstname());
+//                LOGGER.debug("Lista membersów: " + member.getFirstname());
 
-//                if (administratorEmails.isAdministrator(googleUser.getEmail()) == 1) {
                 if (!member.getEmail().isEmpty()) {
 //                    sessionData.logUser(googleUser.getGiven_name(), googleUser.getFamily_name(), googleUser.getPicture(), googleUser.getEmail());
                     sessionData.logUser(member.getFirstname(), member.getLastname(), googleUser.getPicture(), member.getEmail(), member.getRole());
                     resp.sendRedirect("/googlelogin");
-                } else {
-                    req.setAttribute("error", "Nie ma takiego użytkownika. Dostęp zabroniony.");
                 }
+
+//                if (administratorEmails.isAdministrator(googleUser.getEmail()) == 1) {
+//                 else {
+//                    req.setAttribute("error", "Nie ma takiego użytkownika. Dostęp zabroniony.");
+//                }
             }
         }
         Map<String, String> sessionUser = new HashMap<>();

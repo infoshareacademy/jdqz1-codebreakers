@@ -1,7 +1,7 @@
 package com.infoshareacademy.jjdd1.kiomi.app.services;
 
 
-import com.infoshareacademy.jjdd1.kiomi.app.services.users.UsersList;
+import com.infoshareacademy.jjdd1.kiomi.app.services.users.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +14,7 @@ import javax.persistence.Persistence;
 public class MembersDataBuilder {
     private static final Logger LOGGER = LogManager.getLogger(MembersDataBuilder.class);
 
-    public void addEntryToDatabase(UsersList user) {
+    public void addEntryToDatabase(User user) {
 
         EntityManagerFactory emf;
         emf = Persistence.createEntityManagerFactory("database-autoparts");
