@@ -14,6 +14,7 @@ import utils.waits.CustomWait;
 import java.io.File;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
@@ -165,18 +166,18 @@ public class Module2_SeleniumFeatures {
     public void priceLessRegisterWrongEmailCountry() {
         driver.get("http://app.codebreakers.jdqz1.is-academy.pl/");
 
-        sleep1k();
+        waitCustom();
 
         WebElement buttonNavZarejestruj = driver.findElement(By.xpath("//a[@id='noanim-tab-example-tab-2']"));
         buttonNavZarejestruj.click();
 
-        sleep1k();
+        waitCustom();
 
         WebElement fieldEmailRegister = driver.findElement(By.xpath("(//input[@id='formHorizontalEmail'])[2]"));
 
-        sleep1k();
+        waitCustom();
 
-        String randomStringTwoChar = new String();
+        String randomStringTwoChar;
         randomStringTwoChar = randomString();
 
         fieldEmailRegister.sendKeys("aaa@bbb." + randomStringTwoChar);
@@ -184,17 +185,17 @@ public class Module2_SeleniumFeatures {
         WebElement fieldFirstPasswordRegister = driver.findElement(By.xpath("(//div[2]/input[1])[2]"));
         fieldFirstPasswordRegister.sendKeys("123456");
 
-        sleep1k();
+        waitCustom();
 
         WebElement fieldSecondPasswordRegister = driver.findElement(By.xpath("//div[3]/input[1]"));
         fieldSecondPasswordRegister.sendKeys("123456");
 
-        sleep1k();
+        waitCustom();
 
         WebElement buttonZarejestrujSie = driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Zarejestruj się')]"));
         buttonZarejestrujSie.click();
 
-        sleep1k();
+        waitCustom();
 
         WebElement buttonNavWylogujSie = driver.findElement(By.xpath("//a[@href='/'][contains(text(),'Wyloguj się')]"));
         assertEquals("buttonNavWylogusSie is not correct", "Wyloguj się", buttonNavWylogujSie.getText());
@@ -206,7 +207,7 @@ public class Module2_SeleniumFeatures {
 
         driver.get("http://app.codebreakers.jdqz1.is-academy.pl/");
 
-        sleep1k();
+        waitCustom();
 
         WebElement fieldEmailLogin = driver.findElement(By.xpath("(//input[@id='formHorizontalEmail'])[1]"));
         fieldEmailLogin.sendKeys("qwerdqwefafaf@sadfasf.safas");
@@ -218,7 +219,7 @@ public class Module2_SeleniumFeatures {
                 "się')]"));
         buttonZalogujSie.click();
 
-        sleep1k();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         WebElement divAlert = driver.findElement(By.xpath("//div[@role='alert']"));
         assertEquals("Alert text is not correct.", "Nieprawidłowe dane logowania. Spróbuj ponownie", divAlert.getText());
@@ -231,12 +232,8 @@ public class Module2_SeleniumFeatures {
         driver.close();
     }
 
-    private void sleep1k() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private void waitCustom() {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     protected String randomString() {
