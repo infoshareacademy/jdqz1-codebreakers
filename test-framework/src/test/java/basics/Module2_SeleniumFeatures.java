@@ -1,15 +1,19 @@
 package basics;
 
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-import utils.driver.WebDriverCreators;
-import utils.driver.WebDriverProvider;
+
 import utils.waits.CustomWait;
+
+import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.util.List;
@@ -26,10 +30,15 @@ public class Module2_SeleniumFeatures {
 
     private WebDriver driver;
 
+
     @Before
     public void setUp() {
+        /*
         driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
         driver.manage().window().maximize();
+        */
+        ChromeDriverManager.getInstance().setup();
+        driver = new ChromeDriver();
     }
 
     @Test
@@ -199,7 +208,6 @@ public class Module2_SeleniumFeatures {
 
         WebElement buttonNavWylogujSie = driver.findElement(By.xpath("//a[@href='/'][contains(text(),'Wyloguj się')]"));
         assertEquals("buttonNavWylogusSie is not correct", "Wyloguj się", buttonNavWylogujSie.getText());
-
     }
 
     @Test
@@ -223,13 +231,14 @@ public class Module2_SeleniumFeatures {
 
         WebElement divAlert = driver.findElement(By.xpath("//div[@role='alert']"));
         assertEquals("Alert text is not correct.", "Nieprawidłowe dane logowania. Spróbuj ponownie", divAlert.getText());
-
-
     }
 
     @After
     public void tearDown() {
-        driver.close();
+        // driver.close();
+            if (driver != null) {
+                driver.quit();
+            }
     }
 
     private void waitCustom() {
