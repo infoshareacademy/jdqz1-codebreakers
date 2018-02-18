@@ -5,10 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pageobject.pages.HomePage;
-import pageobject.pages.LoginPage;
-import pageobject.pages.RegistrationConfirmationPage;
-import pageobject.pages.RegistrationPage;
+import pageobject.pages.HomeLoginPage;
+import pageobject.pages.HomeRegistrationPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 
@@ -21,18 +19,18 @@ public class RegistrationTest {
 
     private WebDriver driver;
 
-    private HomePage homePage;
-    private RegistrationPage registrationPage;
+    private HomeLoginPage homeLoginPage;
+    private HomeRegistrationPage registrationPage;
     private RegistrationConfirmationPage registrationConfirmationPage;
     private LoginPage loginPage;
 
     @Before
     public void setUp() {
-        driver = new WebDriverProvider(WebDriverCreators.FIREFOX_GECKO).getDriver();
+        driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
         driver.manage().window().maximize();
 
-        homePage = PageFactory.initElements(driver, HomePage.class);
-        registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
+        homeLoginPage = PageFactory.initElements(driver, HomeLoginPage.class);
+        registrationPage = PageFactory.initElements(driver, HomeRegistrationPage.class);
         registrationConfirmationPage = PageFactory.initElements(driver, RegistrationConfirmationPage.class);
         loginPage = PageFactory.initElements(driver, LoginPage.class);
 
@@ -54,7 +52,7 @@ public class RegistrationTest {
         String zipCode = "12345";
         String country = "POLAND";
 
-        homePage.clickOnRegisterLink();
+        homeLoginPage.clickOnRegisterLink();
         registrationPage.inputContactInformationForm(firstName, lastName,
                 phoneNumber, email);
         registrationPage.inputMailingInformationForm(address1, address2, city,
@@ -64,7 +62,7 @@ public class RegistrationTest {
         registrationConfirmationPage.clickOnSignInLink();
         loginPage.userLogin(userName, password);
 
-        assertTrue("User is not logged in.", homePage.isUserIsLoggedIn());
+        assertTrue("User is not logged in.", homeLoginPage.isUserIsLoggedIn());
     }
 
     @After
