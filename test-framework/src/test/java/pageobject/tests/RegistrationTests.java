@@ -13,16 +13,14 @@ import utils.driver.WebDriverProvider;
 import static org.junit.Assert.*;
 
 
-public class RegistrationTest {
+public class RegistrationTests {
 
-    private static final String PAGE_URL = "http://newtours.demoaut.com";
+    private static final String PAGE_URL = "http://app.codebreakers.jdqz1.is-academy.pl/";
 
     private WebDriver driver;
 
     private HomeLoginPage homeLoginPage;
     private HomeRegistrationPage registrationPage;
-    private RegistrationConfirmationPage registrationConfirmationPage;
-    private LoginPage loginPage;
 
     @Before
     public void setUp() {
@@ -31,8 +29,6 @@ public class RegistrationTest {
 
         homeLoginPage = PageFactory.initElements(driver, HomeLoginPage.class);
         registrationPage = PageFactory.initElements(driver, HomeRegistrationPage.class);
-        registrationConfirmationPage = PageFactory.initElements(driver, RegistrationConfirmationPage.class);
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
 
         driver.get(PAGE_URL);
     }
@@ -52,17 +48,6 @@ public class RegistrationTest {
         String zipCode = "12345";
         String country = "POLAND";
 
-        homeLoginPage.clickOnRegisterLink();
-        registrationPage.inputContactInformationForm(firstName, lastName,
-                phoneNumber, email);
-        registrationPage.inputMailingInformationForm(address1, address2, city,
-                state, zipCode, country);
-        registrationPage.inputUserInformationForm(userName, password, password);
-        registrationPage.clickOnSubmitButton();
-        registrationConfirmationPage.clickOnSignInLink();
-        loginPage.userLogin(userName, password);
-
-        assertTrue("User is not logged in.", homeLoginPage.isUserIsLoggedIn());
     }
 
     @After
