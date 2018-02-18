@@ -9,6 +9,8 @@ public class HomeLoginPage {
 
     private WebDriver driver;
 
+    private CustomWait customWait;
+
     @FindBy(xpath = "(//input[@id='formHorizontalEmail'])[1]")
     private WebElement fieldEmailLogin;
 
@@ -23,6 +25,7 @@ public class HomeLoginPage {
 
     public HomeLoginPage(WebDriver driver) {
         this.driver = driver;
+        customWait = new CustomWait(driver);
     }
 
     public void typeInEmailLogin(String emailLogin) {
@@ -34,12 +37,12 @@ public class HomeLoginPage {
     }
 
     public void clickOnButtonZalogujSie() {
-        new CustomWait(driver).waitForElementToBeClickable(buttonZalogujSie);
+        customWait.waitForElementToBeClickable(buttonZalogujSie);
         buttonZalogujSie.click();
     }
 
     public String getTextDivAlertLogin() {
-        new CustomWait(driver).waitForElementToBeVisible(divAlertLogin);
+        customWait.waitForElementToBeVisible(divAlertLogin);
         return divAlertLogin.getText();
     }
 
