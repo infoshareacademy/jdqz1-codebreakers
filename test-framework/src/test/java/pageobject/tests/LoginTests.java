@@ -22,9 +22,6 @@ public class LoginTests {
     private WebDriver driver;
 
     private HomeLoginPage homeLoginPage;
-    private HomeRegistrationPage registrationPage;
-    private CustomWait customWait;
-
 
     @Before
     public void setUp() {
@@ -32,8 +29,6 @@ public class LoginTests {
         driver.manage().window().maximize();
 
         homeLoginPage = PageFactory.initElements(driver, HomeLoginPage.class);
-        registrationPage = PageFactory.initElements(driver, HomeRegistrationPage.class);
-
         driver.get(PAGE_URL);
     }
 
@@ -63,5 +58,4 @@ public class LoginTests {
     public void tearDown() {
         driver.close();
     }
-
 }

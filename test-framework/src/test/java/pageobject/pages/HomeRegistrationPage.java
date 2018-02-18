@@ -35,23 +35,23 @@ public class HomeRegistrationPage {
         customWait = new CustomWait(driver);
     }
 
-    public void clickOnButtonNavZarejestruj() {
+    private void clickOnButtonNavZarejestruj() {
         buttonNavZarejestruj.click();
     }
 
-    public void typeInFieldEmailRegister(String emailRegister) {
+    private void typeInFieldEmailRegister(String emailRegister) {
         fieldEmailRegister.sendKeys(emailRegister);
     }
 
-    public void typeInFieldFirstPasswordRegister(String password) {
+    private void typeInFieldFirstPasswordRegister(String password) {
         fieldFirstPasswordRegister.sendKeys(password);
     }
 
-    public void typeInFieldSecondPasswordRegister(String password) {
+    private void typeInFieldSecondPasswordRegister(String password) {
         fieldSecondPasswordRegister.sendKeys(password);
     }
 
-    public void clickOnButtonZarejestrujSie() {
+    private void clickOnButtonZarejestrujSie() {
         buttonZarejestrujSie.click();
     }
 
@@ -62,13 +62,13 @@ public class HomeRegistrationPage {
 
     public void zarejestrujSie(String emailRegister, String password) {
         customWait.waitForElementToBeClickable(buttonNavZarejestruj);
-        buttonNavZarejestruj.click();
+        clickOnButtonNavZarejestruj();
         customWait.waitForElementToBeVisible(fieldEmailRegister);
-        fieldEmailRegister.sendKeys(emailRegister);
-        fieldFirstPasswordRegister.sendKeys(password);
-        fieldSecondPasswordRegister.sendKeys(password);
+        typeInFieldEmailRegister(emailRegister);
+        typeInFieldFirstPasswordRegister(password);
+        typeInFieldSecondPasswordRegister(password);
         customWait.waitForElementToBeClickable(buttonZarejestrujSie);
-        buttonZarejestrujSie.click();
+        clickOnButtonZarejestrujSie();
         customWait.waitForElementToBeVisible(buttonNavWylogujSie);
     }
 }
