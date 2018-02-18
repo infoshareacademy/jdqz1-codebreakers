@@ -34,20 +34,13 @@ public class RegistrationTests {
     }
 
     @Test
-    public void registerNewUserTest() {
-        String userName = "jan12345";
-        String password = "pass12345";
-        String firstName = "Jan";
-        String lastName = "Nowak";
-        String phoneNumber = "505505505";
-        String email = "jannowak@gmail.com";
-        String address1 = "ul. Grunwaldzka 452";
-        String address2 = "Mieszkanie nr 12";
-        String city = "Gdansk";
-        String state = "Pomorskie";
-        String zipCode = "12345";
-        String country = "POLAND";
+    public void registerWrongEmailCountryTest() {
+        String emailLogin = "aaa@bbb.sdfsdf";
+        String hasloLogin = "asdfadsfasdfasfasfasadd";
 
+        registrationPage.zarejestrujSie(emailLogin, hasloLogin);
+
+        assertEquals("buttonNavWylogusSie is not correct", "Wyloguj się", registrationPage.getTextButtonNavWylogujSie());
     }
 
     @After
