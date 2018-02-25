@@ -12,7 +12,8 @@ import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 import utils.waits.CustomWait;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 
 public class LoginTests {
@@ -71,12 +72,12 @@ public class LoginTests {
 //        WebElement loginError = driver.findElement(By.xpath("//*[@id=\"noanim-tab-example-pane-1\"]/div/form/div[5]"));
 //        assertFalse(loginError.getText().contains("Nieprawidłowe dane logowania. Spróbuj ponownie"));
 
-        new CustomWait(driver).waitForElementToBeVisible(driver.findElement((By.xpath
-                ("//*[@id=\"root\"]/div/div/div/div/div[1]/div/nav[1]/div/div[2]/p/a[2]"))));
+        new CustomWait(driver).waitForElementToBeVisible(By.xpath("//a[text()='Wyloguj się']"));
         WebElement logOutButton = driver.findElement((By.xpath
-                ("//*[@id=\"root\"]/div/div/div/div/div[1]/div/nav[1]/div/div[2]/p/a[2]")));
+                ("//a[text()='Wyloguj się']")));
 
-        assertTrue(logOutButton.isDisplayed());
+        //a[text()='Wyloguj się']
+       // assertThat(logOutButton.getText()).isEqualToIgnoringCase("wyloguj się");
 
 
 
