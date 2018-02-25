@@ -1,5 +1,6 @@
 package utils.waits;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -14,13 +15,15 @@ public class CustomWait {
 
     private static final int DEFAULT_TIMEOUT_IN_SEC = 20;
     private static final int PULLING_TIMEOUT_IN_SEC = 5;
-    private static final int EXPLICIT_WAIT_TIMEOUT = 10;
+    private static final int EXPLICIT_WAIT_TIMEOUT = 15;
 
     WebDriver driver;
 
     public CustomWait(WebDriver driver) {
         this.driver = driver;
     }
+
+
 
     public void waitForElementToBeClickable(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_WAIT_TIMEOUT);
