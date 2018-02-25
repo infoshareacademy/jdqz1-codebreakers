@@ -1,9 +1,10 @@
 package pageobject.tests;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.HomeLoginPage;
 import pageobject.pages.HomeRegistrationPage;
@@ -11,8 +12,7 @@ import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 import utils.waits.CustomWait;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class LoginTests {
@@ -59,9 +59,34 @@ public class LoginTests {
         assertEquals("Alert text is not correct.", "Nieprawidłowe dane logowania. Spróbuj ponownie", homeLoginPage.getTextDivAlertLogin());
     }
 
-    @After
-    public void tearDown() {
-        driver.close();
-    }
+    // tomasz
+
+    @Test
+    public void correctLogin() {
+        String correctEmailLogin = "12345@123.pl";
+        String correctEmailPassword = "123456";
+
+
+        homeLoginPage.zalogujSie(correctEmailLogin, correctEmailPassword);
+//        WebElement loginError = driver.findElement(By.xpath("//*[@id=\"noanim-tab-example-pane-1\"]/div/form/div[5]"));
+//        assertFalse(loginError.getText().contains("Nieprawidłowe dane logowania. Spróbuj ponownie"));
+
+        new CustomWait(driver).waitForElementToBeVisible(driver.findElement((By.xpath
+                ("//*[@id=\"root\"]/div/div/div/div/div[1]/div/nav[1]/div/div[2]/p/a[2]"))));
+        WebElement logOutButton = driver.findElement((By.xpath
+                ("//*[@id=\"root\"]/div/div/div/div/div[1]/div/nav[1]/div/div[2]/p/a[2]")));
+
+        assertTrue(logOutButton.isDisplayed());
+
+
+
+        }
+
+
+
+//    @After
+//    public void tearDown() {
+//        driver.close();
+//    }
 
 }
