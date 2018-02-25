@@ -24,7 +24,6 @@ public class RegistrationTests {
 
     private HomeRegistrationPage registrationPage;
 
-
     @Before
     public void setUp() {
         driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
