@@ -15,6 +15,7 @@ import utils.waits.CustomWait;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 
 
@@ -54,7 +55,8 @@ public class RegistrationPasswordIsTooShort {
 
         String alert = alertElement.getText();
 
-        assertTrue(alert, alert.contains("Hasło musi zawierać przynajmniej 6 znaków."));
+        //assertTrue(alert, alert.contains("Hasło musi zawierać przynajmniej 6 znaków."));
+        assertThat(alert).contains("Hasło musi zawierać przynajmniej 6 znaków.").as("Brak komunikatu o tym, że hasło musi zawierać przynajmniej 6 znaków");
         
     }
 

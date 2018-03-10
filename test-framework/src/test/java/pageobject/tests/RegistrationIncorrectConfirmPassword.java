@@ -14,6 +14,8 @@ import utils.driver.WebDriverProvider;
 
 import java.util.concurrent.TimeUnit;
 
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class RegistrationIncorrectConfirmPassword {
@@ -48,7 +50,8 @@ public class RegistrationIncorrectConfirmPassword {
 
         String alert = alertElement.getText();
 
-        assertTrue(alert, alert.contains("Podane hasła różnią się od siebie"));
+        //assertTrue(alert, alert.contains("Podane hasła różnią się od siebie"));
+        assertThat(alert).contains("Podane hasła różnią się od siebie").as("Brak komunikatu o tym, że podane hasła różnią się");
 
     }
 
