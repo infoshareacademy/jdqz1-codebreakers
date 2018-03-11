@@ -12,7 +12,13 @@ import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 import utils.waits.CustomWait;
 
-import static org.junit.Assert.*;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static utils.data.Constants.*;
 
 
 public class LoginTests {
@@ -63,18 +69,19 @@ public class LoginTests {
 
     @Test
     public void correctLogin() {
-        String correctEmailLogin = "12345@123.pl";
-        String correctEmailPassword = "123456";
+
+
 
 
         homeLoginPage.zalogujSie(correctEmailLogin, correctEmailPassword);
-//        WebElement loginError = driver.findElement(By.xpath("//*[@id=\"noanim-tab-example-pane-1\"]/div/form/div[5]"));
-//        assertFalse(loginError.getText().contains("Nieprawidłowe dane logowania. Spróbuj ponownie"));
+  //      WebElement loginError = driver.findElement(By.xpath
+        // ("//*[@id=\"noanim-tab-example-pane-1\"]/div/form/div[5]"));
+   //     assertFalse(loginError.getText().contains("Nieprawidłowe dane logowania. Spróbuj ponownie"));
 
-        new CustomWait(driver).waitForElementToBeVisible(driver.findElement((By.xpath
-                ("//*[@id=\"root\"]/div/div/div/div/div[1]/div/nav[1]/div/div[2]/p/a[2]"))));
+        new CustomWait(driver).waitForElementToBeVisible((By.xpath
+                ("//*[contains(text(), 'Wyloguj się')]")));
         WebElement logOutButton = driver.findElement((By.xpath
-                ("//*[@id=\"root\"]/div/div/div/div/div[1]/div/nav[1]/div/div[2]/p/a[2]")));
+                ("//*[contains(text(), 'Wyloguj się')]")));
 
         assertTrue(logOutButton.isDisplayed());
 
@@ -82,6 +89,35 @@ public class LoginTests {
 
         }
 
+        @Test
+    public void searchSomething() {
+
+            homeLoginPage.zalogujSie(correctEmailLogin, correctEmailPassword);
+
+            new CustomWait(driver).waitForElementToBeVisible((By.xpath
+                    ("//*[contains(text(), 'Wyloguj się')]")));
+            WebElement searchRTV = driver.findElement(By.xpath
+                    ("//*[contains(text(), 'RTV')]"));
+            searchRTV.click();
+
+            WebElement searchBar = driver.findElement(By.xpath
+                ("//input[@placeholder = 'Znajdź produkt']"));
+            WebElement searchButton = driver.findElement(By.xpath
+                    ("//*[@id=\"root\"]/div/div/div/div/div[1]/div/nav[2]/div/div/div[2]/div/form/button"));
+
+            searchBar.sendKeys(searchPhrase);
+            searchButton.click();
+            List<String> records = driver.findElements(By.xpath("//div[@class='product--name']")).stream().map(WebElement::getText).collect
+                    (Collectors.toList());
+
+assertThat(records).allMatch(text -> text.contains(searchPhrase);
+
+
+
+
+
+
+        }
 
 
 //    @After
