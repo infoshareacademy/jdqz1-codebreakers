@@ -1,5 +1,6 @@
 package pageobject.tests;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -71,58 +72,46 @@ public class LoginTests {
     public void correctLogin() {
 
 
-
-
         homeLoginPage.zalogujSie(correctEmailLogin, correctEmailPassword);
-  //      WebElement loginError = driver.findElement(By.xpath
-        // ("//*[@id=\"noanim-tab-example-pane-1\"]/div/form/div[5]"));
-   //     assertFalse(loginError.getText().contains("Nieprawidłowe dane logowania. Spróbuj ponownie"));
-
         new CustomWait(driver).waitForElementToBeVisible((By.xpath
                 ("//*[contains(text(), 'Wyloguj się')]")));
         WebElement logOutButton = driver.findElement((By.xpath
                 ("//*[contains(text(), 'Wyloguj się')]")));
-
         assertTrue(logOutButton.isDisplayed());
 
 
+    }
 
-        }
-
-        @Test
+    @Test
     public void searchSomething() {
 
-            homeLoginPage.zalogujSie(correctEmailLogin, correctEmailPassword);
+        homeLoginPage.zalogujSie(correctEmailLogin, correctEmailPassword);
 
-            new CustomWait(driver).waitForElementToBeVisible((By.xpath
-                    ("//*[contains(text(), 'Wyloguj się')]")));
-            WebElement searchRTV = driver.findElement(By.xpath
-                    ("//*[contains(text(), 'RTV')]"));
-            searchRTV.click();
+        new CustomWait(driver).waitForElementToBeVisible((By.xpath
+                ("//*[contains(text(), 'Wyloguj się')]")));
+        WebElement searchRTV = driver.findElement(By.xpath
+                ("//*[contains(text(), 'RTV')]"));
+        searchRTV.click();
 
-            WebElement searchBar = driver.findElement(By.xpath
+        WebElement searchBar = driver.findElement(By.xpath
                 ("//input[@placeholder = 'Znajdź produkt']"));
-            WebElement searchButton = driver.findElement(By.xpath
-                    ("//*[@id=\"root\"]/div/div/div/div/div[1]/div/nav[2]/div/div/div[2]/div/form/button"));
+        WebElement searchButton = driver.findElement(By.xpath
+                ("//*[@id=\"root\"]/div/div/div/div/div[1]/div/nav[2]/div/div/div[2]/div/form/button"));
 
-            searchBar.sendKeys(searchPhrase);
-            searchButton.click();
-            List<String> records = driver.findElements(By.xpath("//div[@class='product--name']")).stream().map(WebElement::getText).collect
-                    (Collectors.toList());
+        searchBar.sendKeys(searchPhrase);
+        searchButton.click();
+        List<String> records = driver.findElements(By.xpath("//div[@class='product--name']")).stream().map(WebElement::getText).collect
+                (Collectors.toList());
 
-assertThat(records).allMatch(text -> text.contains(searchPhrase);
-
-
+        assertThat(records).allMatch(text -> text.contains(searchPhrase));
 
 
+    }
 
 
-        }
-
-
-//    @After
-//    public void tearDown() {
-//        driver.close();
-//    }
+    @After
+    public void tearDown() {
+        driver.close();
+    }
 
 }
