@@ -13,6 +13,8 @@ import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 import utils.waits.CustomWait;
 
+import java.util.UUID;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,9 +31,6 @@ public class LoginTests {
     private WebDriver driver;
 
     private HomeLoginPage homeLoginPage;
-    private HomeRegistrationPage registrationPage;
-    private CustomWait customWait;
-
 
     @Before
     public void setUp() {
@@ -46,20 +45,8 @@ public class LoginTests {
 
     @Test
     public void loginWrongCredentialsTest() {
-        String emailLogin = "qwerdqwefafaf@sadfasf.safas";
-        String hasloLogin = "asdfadsfasdfasfasfasadd";
-
-        homeLoginPage.typeInEmailLogin(emailLogin);
-        homeLoginPage.typeInHasloLogin(hasloLogin);
-        homeLoginPage.clickOnButtonZalogujSie();
-
-        assertEquals("Alert text is not correct.", "Nieprawidłowe dane logowania. Spróbuj ponownie", homeLoginPage.getTextDivAlertLogin());
-    }
-
-    @Test
-    public void loginWrongCredentialsBetterTest() {
-        String emailLogin = "qwerdqwefafaf@sadfasf.safas";
-        String hasloLogin = "asdfadsfasdfasfasfasadd";
+        String emailLogin = UUID.randomUUID().toString().replace("-", "") +"@aaa.pl";
+        String hasloLogin = UUID.randomUUID().toString().replace("-", "");
 
         homeLoginPage.zalogujSie(emailLogin, hasloLogin);
 

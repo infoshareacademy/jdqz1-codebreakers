@@ -1,10 +1,16 @@
 package pageobject.pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import utils.waits.CustomWait;
 
 public class HomeRegistrationPage {
+
+    private WebDriver driver;
+
+    private CustomWait customWait;
 
     @FindBy(xpath = "//a[@id='noanim-tab-example-tab-2']")
     private WebElement buttonNavZarejestruj;
@@ -24,35 +30,45 @@ public class HomeRegistrationPage {
     @FindBy(xpath = "//a[@href='/'][contains(text(),'Wyloguj się')]")
     private WebElement buttonNavWylogujSie;
 
-    public void clickOnButtonNavZarejestruj() {
+    public HomeRegistrationPage(WebDriver driver) {
+        this.driver = driver;
+        customWait = new CustomWait(driver);
+    }
+
+    private void clickOnButtonNavZarejestruj() {
         buttonNavZarejestruj.click();
     }
 
-    public void typeInFieldEmailRegister(String emailRegister) {
+    private void typeInFieldEmailRegister(String emailRegister) {
         fieldEmailRegister.sendKeys(emailRegister);
     }
 
-    public void typeInFieldFirstPasswordRegister(String password) {
+    private void typeInFieldFirstPasswordRegister(String password) {
         fieldFirstPasswordRegister.sendKeys(password);
     }
 
-    public void typeInFieldSecondPasswordRegister(String password) {
+    private void typeInFieldSecondPasswordRegister(String password) {
         fieldSecondPasswordRegister.sendKeys(password);
     }
 
-    public void clickOnButtonZarejestrujSie() {
+    private void clickOnButtonZarejestrujSie() {
         buttonZarejestrujSie.click();
     }
 
     public String getTextButtonNavWylogujSie() {
+        customWait.waitForElementToBeVisible(buttonNavWylogujSie);
         return buttonNavWylogujSie.getText();
     }
 
     public void zarejestrujSie(String emailRegister, String password) {
-        buttonNavZarejestruj.click();
-        fieldEmailRegister.sendKeys(emailRegister);
-        fieldFirstPasswordRegister.sendKeys(password);
-        fieldSecondPasswordRegister.sendKeys(password);
-        buttonZarejestrujSie.click();
+        customWait.waitForElementToBeClickable(buttonNavZarejestruj);
+        clickOnButtonNavZarejestruj();
+        customWait.waitForElementToBeVisible(fieldEmailRegister);
+        typeInFieldEmailRegister(emailRegister);
+        typeInFieldFirstPasswordRegister(password);
+        typeInFieldSecondPasswordRegister(password);
+        customWait.waitForElementToBeClickable(buttonZarejestrujSie);
+        clickOnButtonZarejestrujSie();
+        customWait.waitForElementToBeVisible(buttonNavWylogujSie);
     }
 }

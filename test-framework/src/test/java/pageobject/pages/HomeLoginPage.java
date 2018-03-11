@@ -7,8 +7,6 @@ import utils.waits.CustomWait;
 
 public class HomeLoginPage {
 
-    private WebDriver driver;
-
     private CustomWait customWait;
 
     @FindBy(xpath = "(//input[@id='formHorizontalEmail'])[1]")
@@ -24,7 +22,6 @@ public class HomeLoginPage {
     private WebElement divAlertLogin;
 
     public HomeLoginPage(WebDriver driver) {
-        this.driver = driver;
         customWait = new CustomWait(driver);
     }
 
