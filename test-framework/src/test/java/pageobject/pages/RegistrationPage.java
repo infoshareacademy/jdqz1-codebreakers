@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-public class RegistrationPageMK {
+public class RegistrationPage {
 
     @FindBy(xpath = "//a[@id='noanim-tab-example-tab-2']")
     private WebElement registrationTab;

@@ -11,7 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import pageobject.pages.RegistrationPageMK;
+import pageobject.pages.RegistrationPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 
@@ -26,7 +26,7 @@ import static org.junit.Assert.assertTrue;
 
         private WebDriver driver;
 
-        private RegistrationPageMK registrationPage;
+        private RegistrationPage registrationPage;
 
         /* Instead of String[] we can use Object[] or other type. */
         @DataProvider
@@ -46,7 +46,7 @@ import static org.junit.Assert.assertTrue;
         public void setUp() {
             driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
             driver.manage().window().maximize();
-            registrationPage = PageFactory.initElements(driver, RegistrationPageMK.class);
+            registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
             driver.get(PAGE_URL);
         }
 

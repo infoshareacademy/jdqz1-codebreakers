@@ -6,9 +6,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
-import pageobject.pages.RegistrationPageMK;
+import pageobject.pages.RegistrationPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 import utils.waits.CustomWait;
@@ -21,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 
 public class RegistrationPasswordIsTooShort {
     private static final String PAGE_URL = "http://app.codebreakers.jdqz1.is-academy.pl/";
-    private RegistrationPageMK registrationPage;
+    private RegistrationPage registrationPage;
     private WebDriver driver;
     private CustomWait customWait;
 
@@ -30,7 +29,7 @@ public class RegistrationPasswordIsTooShort {
         driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
         driver.manage().window().maximize();
         customWait = new CustomWait(driver);
-        registrationPage = PageFactory.initElements(driver, RegistrationPageMK.class);
+        registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
         driver.get(PAGE_URL);
 
     }
