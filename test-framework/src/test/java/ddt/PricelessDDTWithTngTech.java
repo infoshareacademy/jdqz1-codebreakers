@@ -28,7 +28,6 @@ public class PricelessDDTWithTngTech {
 
     private HomeSearchPage homeSearchPage;
 
-    /* Instead of String[] we can use Object[] or other type. */
     @DataProvider
     public static Object[][] pricelessSearchSingleWordTest() {
         return new String[][] {
