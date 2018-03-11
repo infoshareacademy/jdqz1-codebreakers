@@ -31,6 +31,8 @@ public class LoginTests {
     private WebDriver driver;
 
     private HomeLoginPage homeLoginPage;
+    private HomeRegistrationPage registrationPage;
+
 
     @Before
     public void setUp() {
