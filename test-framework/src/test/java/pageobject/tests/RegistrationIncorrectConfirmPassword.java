@@ -10,12 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.RegistrationPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
-
 import java.util.concurrent.TimeUnit;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
+import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
+import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
 
 public class RegistrationIncorrectConfirmPassword {
     private static final String PAGE_URL = "http://app.codebreakers.jdqz1.is-academy.pl/";
@@ -33,23 +32,19 @@ public class RegistrationIncorrectConfirmPassword {
 
     @Test
     public void registerInCorrectPassword()  {
-        String email = "test@test.com";
-        String password = "test12345";
-        String confirmPassword = "test1234";
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         registrationPage.clickOnRegisterTab();
         registrationPage.typeInEmail(email);
         registrationPage.typeInPassword(password);
-        registrationPage.typeInConfirmPassword(confirmPassword);
+        registrationPage.typeInConfirmPassword(password);
         registrationPage.clickOnRegistrationButton();
 
         WebElement alertElement = driver.findElement(By.xpath("//div[@role='alert']"));
 
         String alert = alertElement.getText();
 
-        //assertTrue(alert, alert.contains("Podane hasła różnią się od siebie"));
         assertThat(alert).contains("Podane hasła różnią się od siebie").as("Brak komunikatu o tym, że podane hasła różnią się");
 
     }

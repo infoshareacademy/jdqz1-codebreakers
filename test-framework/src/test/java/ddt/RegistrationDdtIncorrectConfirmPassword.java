@@ -17,10 +17,14 @@ import utils.driver.WebDriverProvider;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
+import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
+import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
 
-    @RunWith(DataProviderRunner.class)
-    public class RegistrationDdtIncorrectConfirmPassword {
+
+@RunWith(DataProviderRunner.class)
+    public class
+    RegistrationDdtIncorrectConfirmPassword {
 
         private static final String PAGE_URL = "http://app.codebreakers.jdqz1.is-academy.pl/";
 
@@ -32,13 +36,13 @@ import static org.junit.Assert.assertTrue;
         @DataProvider
         public static Object[][] testDataForRegistration() {
             return new String[][] {
-                    new String[] {"test@test.pl", "test12345", "test1234"},
-                    new String[] {"test@test.com", "test12345", "test123456"},
-                    new String[] {"test@test.pl", "test123456", "test1234"},
-                    new String[] {"test@test.com", "test1234567", "test123456"},
-                    new String[] {"test@test.pl", "12345test", "1234test"},
-                    new String[] {"test@test.com", "12345test", "test123456test"},
-                    new String[] {"test2@op.pl", "test12345", "test123"},
+                    new String[] {email, password, password.substring(0, 7)},
+                    new String[] {email, password, password.substring(0, 7)},
+                    new String[] {email, password, password.substring(0, 7)},
+                    new String[] {email, password, password.substring(0, 7)},
+                    new String[] {email, password, password.substring(0, 7)},
+                    new String[] {email, password, password.substring(0, 7)},
+                    new String[] {email, password, password.substring(0, 7)},
             };
         }
 
@@ -65,7 +69,7 @@ import static org.junit.Assert.assertTrue;
 
             String alert = alertElement.getText();
 
-            assertTrue(alert, alert.contains("Podane hasła różnią się od siebie"));
+            assertThat(alert).contains("Podane hasła różnią się od siebie").as("Brak komunikatu o tym, że podane hasła różnią się");
         }
 
         @After

@@ -15,9 +15,13 @@ import pageobject.pages.RegistrationPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
+import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
+import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
+
 
 @RunWith(DataProviderRunner.class)
 public class RegistrationDdtPasswordIsTooShort {
@@ -31,13 +35,13 @@ public class RegistrationDdtPasswordIsTooShort {
     @DataProvider
     public static Object[][] testDataForRegistration() {
         return new String[][] {
-                new String[] {"test@test.pl", "awa", "awa"},
-                new String[] {"test@test.com", "aaa", "aaa"},
-                new String[] {"test@test.pl", "ba", "ba"},
-                new String[] {"test@test.com", "bucc", "bucc"},
-                new String[] {"test@test.pl", "ttt", "ttt"},
-                new String[] {"test@test.com", "ux", "ux"},
-                new String[] {"test2@op.pl", "a", "a"},
+                new String[] {email, password.substring(0, 3), password.substring(0, 3)},
+                new String[] {email, password.substring(0, 3), password.substring(0, 3)},
+                new String[] {email, password.substring(0, 3), password.substring(0, 3)},
+                new String[] {email, password.substring(0, 3), password.substring(0, 3)},
+                new String[] {email, password.substring(0, 3), password.substring(0, 3)},
+                new String[] {email, password.substring(0, 3), password.substring(0, 3)},
+                new String[] {email, password.substring(0, 3), password.substring(0, 3)},
         };
     }
 
@@ -66,7 +70,7 @@ public class RegistrationDdtPasswordIsTooShort {
 
         String alert = alertElement.getText();
 
-        assertTrue(alert, alert.contains("Hasło musi zawierać przynajmniej 6 znaków."));
+        assertThat(alert).contains("Hasło musi zawierać przynajmniej 6 znaków.").as("Brak komunikatu o tym, że hasło musi zawierać przynajmniej 6 znaków");
     }
 
     @After

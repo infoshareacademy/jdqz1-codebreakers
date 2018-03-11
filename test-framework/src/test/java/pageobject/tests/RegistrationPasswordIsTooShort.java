@@ -11,11 +11,11 @@ import pageobject.pages.RegistrationPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 import utils.waits.CustomWait;
-
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
+import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
+import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
 
 
 public class RegistrationPasswordIsTooShort {
@@ -36,17 +36,14 @@ public class RegistrationPasswordIsTooShort {
 
     @Test
     public void register()  {
-        String email = "test@test.com";
-        String password = "awa";
-        String confirmPassword = "awa";
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
         registrationPage.clickOnRegisterTab();
         registrationPage.typeInEmail(email);
-        registrationPage.typeInPassword(password);
-        registrationPage.typeInConfirmPassword(confirmPassword);
+        registrationPage.typeInPassword(password.substring(0, 3));
+        registrationPage.typeInConfirmPassword(password);
         registrationPage.clickOnRegistrationButton();
 
 
@@ -54,7 +51,6 @@ public class RegistrationPasswordIsTooShort {
 
         String alert = alertElement.getText();
 
-        //assertTrue(alert, alert.contains("Hasło musi zawierać przynajmniej 6 znaków."));
         assertThat(alert).contains("Hasło musi zawierać przynajmniej 6 znaków.").as("Brak komunikatu o tym, że hasło musi zawierać przynajmniej 6 znaków");
         
     }
