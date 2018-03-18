@@ -1,4 +1,4 @@
-package pageobject.tests;
+package tests;
 
 import org.junit.After;
 import org.junit.Before;
@@ -14,20 +14,16 @@ import utils.driver.WebDriverProvider;
 import static org.junit.Assert.*;
 
 
-public class RegistrationTests {
+public class RegistrationTests extends BaseTest{
 
     private static final String PAGE_URL = "http://app.codebreakers.jdqz1.is-academy.pl/";
     private static int DOMAIN_LENGTH = 2;
     private static int PASSWORD_LENGTH = 12;
 
-    private WebDriver driver;
-
     private HomeRegistrationPage registrationPage;
 
     @Before
-    public void setUp() {
-        driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
-        driver.manage().window().maximize();
+    public void setUpForTest() {
 
         registrationPage = PageFactory.initElements(driver, HomeRegistrationPage.class);
 

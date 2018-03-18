@@ -1,4 +1,4 @@
-package pageobject.tests;
+package tests;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,53 +10,46 @@ import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.RegistrationPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
-import utils.waits.CustomWait;
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
 import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
 
-
-public class RegistrationPasswordIsTooShort {
+public class RegistrationIncorrectConfirmPassword extends BaseTest {
     private static final String PAGE_URL = "http://app.codebreakers.jdqz1.is-academy.pl/";
     private RegistrationPage registrationPage;
-    private WebDriver driver;
-    private CustomWait customWait;
 
     @Before
-    public void setUp() {
-        driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
-        driver.manage().window().maximize();
-        customWait = new CustomWait(driver);
+    public void setUpForTest() {
+
         registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
         driver.get(PAGE_URL);
 
     }
 
     @Test
-    public void register()  {
+    public void registerInCorrectPassword()  {
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-
         registrationPage.clickOnRegisterTab();
         registrationPage.typeInEmail(email);
-        registrationPage.typeInPassword(password.substring(0, 3));
+        registrationPage.typeInPassword(password);
         registrationPage.typeInConfirmPassword(password);
         registrationPage.clickOnRegistrationButton();
 
-
-        WebElement alertElement = driver.findElement(By.xpath("//div[@role = 'alert']"));
+        WebElement alertElement = driver.findElement(By.xpath("//div[@role='alert']"));
 
         String alert = alertElement.getText();
 
-        assertThat(alert).contains("Hasło musi zawierać przynajmniej 6 znaków.").as("Brak komunikatu o tym, że hasło musi zawierać przynajmniej 6 znaków");
-        
+        assertThat(alert).contains("Podane hasła różnią się od siebie").as("Brak komunikatu o tym, że podane hasła różnią się");
+
     }
 
     @After
     public void tearDown() throws Exception {
         driver.close();
     }
+
 }

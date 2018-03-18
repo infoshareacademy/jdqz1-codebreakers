@@ -1,11 +1,15 @@
-package pageobject.tests;
+package tests;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.kohsuke.rngom.parse.host.Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.HomeLoginPage;
 import pageobject.pages.HomeRegistrationPage;
@@ -13,6 +17,8 @@ import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 import utils.waits.CustomWait;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.UUID;
 
 import java.util.List;
@@ -24,23 +30,12 @@ import static org.junit.Assert.assertTrue;
 import static utils.data.Constants.*;
 
 
-public class LoginTests {
+public class LoginTests extends BaseTest {
 
     private static final String PAGE_URL = "http://app.codebreakers.jdqz1.is-academy.pl/";
 
-    private WebDriver driver;
-
-    private HomeLoginPage homeLoginPage;
-    private HomeRegistrationPage registrationPage;
-
-
     @Before
-    public void setUp() {
-        driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
-        driver.manage().window().maximize();
-
-        homeLoginPage = PageFactory.initElements(driver, HomeLoginPage.class);
-        registrationPage = PageFactory.initElements(driver, HomeRegistrationPage.class);
+    public void setUpForTest() throws MalformedURLException {
 
         driver.get(PAGE_URL);
     }
