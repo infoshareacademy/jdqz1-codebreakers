@@ -11,11 +11,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import pageobject.pages.RegistrationPage;
+import pageobject.pages.HomeRegistrationPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,7 +28,8 @@ public class RegistrationDdtPasswordIsTooShort {
 
     private WebDriver driver;
 
-    private RegistrationPage registrationPage;
+    private HomeRegistrationPage registrationPage;
+
 
     /* Instead of String[] we can use Object[] or other type. */
     @DataProvider
@@ -49,7 +49,7 @@ public class RegistrationDdtPasswordIsTooShort {
     public void setUp() {
         driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
         driver.manage().window().maximize();
-        registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
+        registrationPage = PageFactory.initElements(driver, HomeRegistrationPage.class);
         driver.get(PAGE_URL);
     }
 

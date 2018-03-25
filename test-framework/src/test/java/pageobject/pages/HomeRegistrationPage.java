@@ -3,7 +3,7 @@ package pageobject.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
+import utils.GetRandomEmailAndPassword.GetRandomPassword;
 import utils.waits.CustomWait;
 
 public class HomeRegistrationPage {
@@ -11,6 +11,8 @@ public class HomeRegistrationPage {
     private WebDriver driver;
 
     private CustomWait customWait;
+
+    GetRandomPassword password = new GetRandomPassword();
 
     @FindBy(xpath = "//a[@id='noanim-tab-example-tab-2']")
     private WebElement buttonNavZarejestruj;
@@ -71,4 +73,23 @@ public class HomeRegistrationPage {
         clickOnButtonZarejestrujSie();
         customWait.waitForElementToBeVisible(buttonNavWylogujSie);
     }
+
+    public void clickOnRegisterTab() {
+        buttonNavZarejestruj.click();
+    }
+
+    public void typeInEmail(String email) {
+        fieldEmailRegister.sendKeys(email);
+    }
+
+    public void typeInPassword(String password) { fieldFirstPasswordRegister.sendKeys(password); }
+
+    public void typeInConfirmPassword(String confirmPassword) {
+        fieldSecondPasswordRegister.sendKeys(confirmPassword);
+    }
+
+    public void clickOnRegistrationButton() {
+        buttonZarejestrujSie.click();
+    }
+
 }
