@@ -1,6 +1,5 @@
 package tests;
 
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
@@ -30,16 +29,16 @@ public class BaseTest {
                 "/home/miloszwozniak/projects/jdqz1-codebreakers/test-framework/src/test/resources/drivers/chrome/chromedriver_Linux64");
         String buildEnv = System.getProperty("buildEnv");
 
-        driver = new ChromeDriver();
+     //   driver = new ChromeDriver();
 
 
-/*
+
         if(buildEnv.equals("CI")){
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub/"), new DesiredCapabilities());
         }
         if(buildEnv.equals("DEV")){
             driver = new ChromeDriver();
-        }*/
+        }
 
     }
 
