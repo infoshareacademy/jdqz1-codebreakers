@@ -1,7 +1,6 @@
 package tests;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -9,7 +8,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.HomeLoginPage;
 import pageobject.pages.HomeRegistrationPage;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -21,6 +19,7 @@ public class BaseTest {
 
     protected HomeLoginPage homeLoginPage;
     protected HomeRegistrationPage registrationPage;
+
 
     @Before
     public void setUp() throws MalformedURLException {
