@@ -1,6 +1,8 @@
 package tests;
 
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -15,29 +17,40 @@ public class BaseTest {
 
     private static final String PAGE_URL = "http://app.codebreakers.jdqz1.is-academy.pl/";
 
-    protected WebDriver driver;
+    protected static WebDriver driver;
 
     protected HomeLoginPage homeLoginPage;
     protected HomeRegistrationPage registrationPage;
 
 
-    @Before
-    public void setUp() throws MalformedURLException {
+    @BeforeClass
+    public static void setUp() throws MalformedURLException {
 
         System.setProperty("webdriver.chrome.driver",
                 "/home/miloszwozniak/projects/jdqz1-codebreakers/test-framework/src/test/resources/drivers/chrome/chromedriver_Linux64");
         String buildEnv = System.getProperty("buildEnv");
 
+        driver = new ChromeDriver();
+
+
+/*
         if(buildEnv.equals("CI")){
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub/"), new DesiredCapabilities());
         }
         if(buildEnv.equals("DEV")){
             driver = new ChromeDriver();
-        }
+        }*/
+
+    }
+
+    @Before
+    public void setUpPages() throws MalformedURLException {
 
         homeLoginPage = PageFactory.initElements(driver, HomeLoginPage.class);
         registrationPage = PageFactory.initElements(driver, HomeRegistrationPage.class);
 
     }
+
+
 
 }

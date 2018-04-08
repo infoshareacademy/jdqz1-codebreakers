@@ -1,8 +1,7 @@
 package tests;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.TestWatcher;
 import org.kohsuke.rngom.parse.host.Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +12,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.HomeLoginPage;
 import pageobject.pages.HomeRegistrationPage;
+import utils.ScreenshotWhenFail.ScreenShot;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
 import utils.waits.CustomWait;
@@ -34,6 +34,9 @@ public class LoginTests extends BaseTest {
 
     private static final String PAGE_URL = "http://app.codebreakers.jdqz1.is-academy.pl/";
 
+    @Rule
+    public ScreenShot screenShot = new ScreenShot(driver);
+
     @Before
     public void setUpForTest() throws MalformedURLException {
 
@@ -47,7 +50,7 @@ public class LoginTests extends BaseTest {
 
         homeLoginPage.zalogujSie(emailLogin, hasloLogin);
 
-        assertEquals("Alert text is not correct.", "Nieprawidłowe dane logowania. Spróbuj ponownie", homeLoginPage.getTextDivAlertLogin());
+        assertEquals("Alert text is not correct.", "Nieprawidłowe dane logowania. Spróbuj ponown", homeLoginPage.getTextDivAlertLogin());
     }
 
     // tomasz
@@ -93,8 +96,8 @@ public class LoginTests extends BaseTest {
     }
 
 
-    @After
-    public void tearDown() {
+    @AfterClass
+    public static void tearDown() {
         driver.close();
     }
 

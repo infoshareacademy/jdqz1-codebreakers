@@ -5,7 +5,6 @@ import org.junit.Rule;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -13,25 +12,26 @@ import java.io.File;
 
 public class ScreenShot extends TestWatcher {
 
-    private static String watchedLog;
+    protected WebDriver driver;
 
-    protected WebDriver driver ;
+    public ScreenShot (WebDriver driver){
+        this.driver = driver;
+    }
 
-    @Rule
-    public final TestRule watchman = new TestWatcher() {
         @Override
         protected void failed(Throwable e, Description description) {
-            watchedLog += description.getDisplayName() + " " + e.getClass().getSimpleName() + "\n";
-
+            super.failed(e, description);
             try {
-                take(driver, "/home/miloszwozniak/projects/jdqz1-codebreakers/test-framework/src/test" +
+                this.takeSnapShot("/home/miloszwozniak/projects/jdqz1-codebreakers/test-framework/src/test" +
                         "/resources" +
-                        "/test" +
+                        "/" + description.getMethodName() +
                         ".png");
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception ee) {
+                ee.printStackTrace();
             }
         }
+
+
 
     /**
 
@@ -45,11 +45,11 @@ public class ScreenShot extends TestWatcher {
 
      */
 
-    public static void takeSnapShot(WebDriver webdriver,String fileWithPath) throws Exception{
+    public void takeSnapShot(String fileWithPath) throws Exception{
 
         //Convert web driver object to TakeScreenshot
 
-        TakesScreenshot scrShot =((TakesScreenshot)webdriver);
+        TakesScreenshot scrShot =((TakesScreenshot)driver);
 
         //Call getScreenshotAs method to create image file
 
