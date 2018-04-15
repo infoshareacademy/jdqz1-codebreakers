@@ -8,16 +8,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.HomeSearchPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RunWith(DataProviderRunner.class)
 public class PricelessDDTWithTngTech {

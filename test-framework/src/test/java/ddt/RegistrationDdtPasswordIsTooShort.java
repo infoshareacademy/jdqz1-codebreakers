@@ -30,8 +30,6 @@ public class RegistrationDdtPasswordIsTooShort {
 
     private HomeRegistrationPage registrationPage;
 
-
-    /* Instead of String[] we can use Object[] or other type. */
     @DataProvider
     public static Object[][] testDataForRegistration() {
         return new String[][] {

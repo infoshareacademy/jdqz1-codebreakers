@@ -29,10 +29,6 @@ public class BaseTest {
                 "/home/miloszwozniak/projects/jdqz1-codebreakers/test-framework/src/test/resources/drivers/chrome/chromedriver_Linux64");
         String buildEnv = System.getProperty("buildEnv");
 
-     //   driver = new ChromeDriver();
-
-
-
         if(buildEnv.equals("CI")){
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub/"), new DesiredCapabilities());
         }

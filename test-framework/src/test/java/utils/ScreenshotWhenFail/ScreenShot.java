@@ -1,8 +1,6 @@
 package utils.ScreenshotWhenFail;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Rule;
-import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.OutputType;
@@ -32,34 +30,13 @@ public class ScreenShot extends TestWatcher {
         }
 
 
-
-    /**
-
-     * This function will take screenshot
-
-     * @param webdriver
-
-     * @param fileWithPath
-
-     * @throws Exception
-
-     */
-
     public void takeSnapShot(String fileWithPath) throws Exception{
-
-        //Convert web driver object to TakeScreenshot
 
         TakesScreenshot scrShot =((TakesScreenshot)driver);
 
-        //Call getScreenshotAs method to create image file
-
         File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
 
-        //Move image file to new destination
-
         File DestFile=new File(fileWithPath);
-
-        //Copy file at destination
 
         FileUtils.copyFile(SrcFile, DestFile);
 

@@ -1,24 +1,11 @@
 package tests;
 
 import org.junit.*;
-import org.junit.rules.TestWatcher;
-import org.kohsuke.rngom.parse.host.Base;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.PageFactory;
-import pageobject.pages.HomeLoginPage;
-import pageobject.pages.HomeRegistrationPage;
 import utils.ScreenshotWhenFail.ScreenShot;
-import utils.driver.WebDriverCreators;
-import utils.driver.WebDriverProvider;
 import utils.waits.CustomWait;
-
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.UUID;
 
 import java.util.List;
