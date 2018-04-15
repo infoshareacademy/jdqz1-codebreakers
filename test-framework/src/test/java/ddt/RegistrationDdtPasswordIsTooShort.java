@@ -14,13 +14,11 @@ import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.HomeRegistrationPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
-
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
 import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
-
 
 @RunWith(DataProviderRunner.class)
 public class RegistrationDdtPasswordIsTooShort {
@@ -56,13 +54,11 @@ public class RegistrationDdtPasswordIsTooShort {
     public void registerNewUserTest(String email, String password, String confirmPassword) {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-
         registrationPage.clickOnRegisterTab();
         registrationPage.typeInEmail(email);
         registrationPage.typeInPassword(password);
         registrationPage.typeInConfirmPassword(confirmPassword);
         registrationPage.clickOnRegistrationButton();
-
 
         WebElement alertElement = driver.findElement(By.xpath("//div[@role = 'alert']"));
 

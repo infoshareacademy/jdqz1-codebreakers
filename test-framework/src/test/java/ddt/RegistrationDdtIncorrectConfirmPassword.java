@@ -14,13 +14,11 @@ import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.HomeRegistrationPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
-
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
 import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
-
 
 @RunWith(DataProviderRunner.class)
     public class
@@ -32,7 +30,6 @@ import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
 
         private HomeRegistrationPage registrationPage;
 
-        /* Instead of String[] we can use Object[] or other type. */
         @DataProvider
         public static Object[][] testDataForRegistration() {
             return new String[][] {
