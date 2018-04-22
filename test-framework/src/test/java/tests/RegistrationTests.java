@@ -1,19 +1,30 @@
 package tests;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.HomeRegistrationPage;
 import utils.StringGenerator;
 
+import java.util.concurrent.TimeUnit;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
+import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
+import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
+
+import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
+import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
 
 
-public class RegistrationTests extends BaseTest{
+public class RegistrationTests extends BaseTest {
 
     private static final String PAGE_URL = "http://app.codebreakers.jdqz1.is-academy.pl/";
-    private static int DOMAIN_LENGTH = 2;
+    private static int DOMAIN_LENGTH = 3;
     private static int PASSWORD_LENGTH = 12;
 
     private HomeRegistrationPage registrationPage;
@@ -34,10 +45,20 @@ public class RegistrationTests extends BaseTest{
         registrationPage.zarejestrujSie(emailLogin, hasloLogin);
 
         assertEquals("buttonNavWylogusSie is not correct", "Wyloguj się", registrationPage.getTextButtonNavWylogujSie());
+
+        homeLoginPage.wylogujSie();
     }
 
-    @After
-    public void tearDown() {
+    @Test
+    public void registerInCorrectPassword() {
+        assertThat(registrationPage.returnAlert()).contains("Podane hasła różnią się od siebie").as("Brak komunikatu o tym, że " +
+                "podane hasła " +
+                "różnią się");
+    }
+
+
+    @AfterClass
+    public static void tearDown() {
         driver.close();
     }
 }

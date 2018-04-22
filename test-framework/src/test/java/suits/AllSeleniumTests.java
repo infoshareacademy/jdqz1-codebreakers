@@ -3,7 +3,6 @@ package suits;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import tests.LoginTests;
-import tests.RegistrationIncorrectConfirmPassword;
 import tests.RegistrationPasswordIsTooShort;
 import tests.RegistrationTests;
 

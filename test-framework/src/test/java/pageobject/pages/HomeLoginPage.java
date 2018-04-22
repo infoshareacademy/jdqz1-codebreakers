@@ -4,6 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.waits.CustomWait;
+import static utils.data.Constants.*;
+
+import java.util.List;
 
 public class HomeLoginPage {
 
@@ -20,6 +23,21 @@ public class HomeLoginPage {
 
     @FindBy(xpath = "//div[@role='alert']")
     private WebElement divAlertLogin;
+
+    @FindBy(xpath = "//*[contains(text(), 'Wyloguj się')]")
+    private WebElement logOutButton;
+
+    @FindBy(xpath = "//*[contains(text(), 'RTV')]")
+    private WebElement searchRTV;
+
+    @FindBy(xpath = "//input[@placeholder = 'Znajdź produkt']")
+    private WebElement searchBar;
+
+    @FindBy(xpath = "//button[@type='submit']")
+    private WebElement searchButton;
+
+    @FindBy(xpath = "//div[@class='product--name']")
+    private List <WebElement> productNames;
 
     public HomeLoginPage(WebDriver driver) {
         customWait = new CustomWait(driver);
@@ -47,5 +65,26 @@ public class HomeLoginPage {
         typeInEmailLogin(emailLogin);
         typeInHasloLogin(hasloLogin);
         clickOnButtonZalogujSie();
+    }
+
+    public void wylogujSie() {
+        logOutButton.click();
+    }
+
+    public WebElement getLogOutButton() {
+        return logOutButton;
+    }
+
+    public String getTextLogOutButton() {
+        customWait.waitForElementToBeVisible(logOutButton);
+        return logOutButton.getText();
+    }
+
+    public List<WebElement> getProductNames() {
+        customWait.waitForElementToBeVisible(logOutButton);
+        searchRTV.click();
+        searchBar.sendKeys(searchPhrase);
+        searchButton.click();
+        return productNames;
     }
 }

@@ -18,7 +18,7 @@ public class BaseTest {
 
     protected static WebDriver driver;
 
-    protected HomeLoginPage homeLoginPage;
+    public HomeLoginPage homeLoginPage;
     protected HomeRegistrationPage registrationPage;
 
 
@@ -46,6 +46,7 @@ public class BaseTest {
 
     }
 
-
-
+    public HomeLoginPage getHomeLoginPage() {
+        return homeLoginPage;
+    }
 }
