@@ -18,24 +18,16 @@ public class BaseTest {
 
     protected static WebDriver driver;
 
-    public HomeLoginPage homeLoginPage;
-    protected HomeRegistrationPage registrationPage;
-
+    HomeLoginPage homeLoginPage;
+    private HomeRegistrationPage registrationPage;
 
     @BeforeClass
     public static void setUp() throws MalformedURLException {
 
         System.setProperty("webdriver.chrome.driver",
-                "/home/miloszwozniak/projects/jdqz1-codebreakers/test-framework/src/test/resources/drivers/chrome/chromedriver_Linux64");
-        String buildEnv = System.getProperty("buildEnv");
+                "src/test/resources/drivers/chrome/chromedriver_Linux64");
 
-        if(buildEnv.equals("CI")){
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub/"), new DesiredCapabilities());
-        }
-        if(buildEnv.equals("DEV")){
             driver = new ChromeDriver();
-        }
-
     }
 
     @Before
@@ -43,7 +35,6 @@ public class BaseTest {
 
         homeLoginPage = PageFactory.initElements(driver, HomeLoginPage.class);
         registrationPage = PageFactory.initElements(driver, HomeRegistrationPage.class);
-
     }
 
     public HomeLoginPage getHomeLoginPage() {

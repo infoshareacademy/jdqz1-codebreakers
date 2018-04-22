@@ -20,7 +20,6 @@ public class PricelessDDTWithTngTech {
     private static final String PAGE_URL = "http://app.codebreakers.jdqz1.is-academy.pl/";
 
     private WebDriver driver;
-
     private HomeSearchPage homeSearchPage;
 
     @DataProvider

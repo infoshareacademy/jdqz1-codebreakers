@@ -29,16 +29,10 @@ public class ScreenShot extends TestWatcher {
             }
         }
 
-
     public void takeSnapShot(String fileWithPath) throws Exception{
-
         TakesScreenshot scrShot =((TakesScreenshot)driver);
-
         File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
-
         File DestFile=new File(fileWithPath);
-
         FileUtils.copyFile(SrcFile, DestFile);
-
     }
 }

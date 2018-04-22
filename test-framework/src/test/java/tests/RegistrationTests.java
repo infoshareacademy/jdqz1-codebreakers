@@ -1,24 +1,14 @@
 package tests;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.HomeRegistrationPage;
 import utils.StringGenerator;
 
-import java.util.concurrent.TimeUnit;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
-import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
-import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
-
-import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
-import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
 
 
 public class RegistrationTests extends BaseTest {
@@ -31,7 +21,6 @@ public class RegistrationTests extends BaseTest {
 
     @Before
     public void setUpForTest() {
-
         registrationPage = PageFactory.initElements(driver, HomeRegistrationPage.class);
 
         driver.get(PAGE_URL);
@@ -50,12 +39,17 @@ public class RegistrationTests extends BaseTest {
     }
 
     @Test
+    public void registrationPasswordIsTooShort() {
+        assertThat(registrationPage.registerReturnAlertPasswordTooShort()).contains("Hasło musi zawierać przynajmniej 6 znaków.").as
+                ("Brak komunikatu o tym, że hasło musi zawierać przynajmniej 6 znaków");
+    }
+
+    @Test
     public void registerInCorrectPassword() {
-        assertThat(registrationPage.returnAlert()).contains("Podane hasła różnią się od siebie").as("Brak komunikatu o tym, że " +
+        assertThat(registrationPage.registerReturnAlertIncorrectPasswords()).contains("Podane hasła różnią się od siebie").as("Brak komunikatu o tym, że " +
                 "podane hasła " +
                 "różnią się");
     }
-
 
     @AfterClass
     public static void tearDown() {

@@ -43,15 +43,15 @@ public class HomeLoginPage {
         customWait = new CustomWait(driver);
     }
 
-    public void typeInEmailLogin(String emailLogin) {
+    private void typeInEmailLogin(String emailLogin) {
         fieldEmailLogin.sendKeys(emailLogin);
     }
 
-    public void typeInHasloLogin(String hasloLogin) {
+    private void typeInHasloLogin(String hasloLogin) {
         fieldHasloLogin.sendKeys(hasloLogin);
     }
 
-    public void clickOnButtonZalogujSie() {
+    private void clickOnButtonZalogujSie() {
         customWait.waitForElementToBeClickable(buttonZalogujSie);
         buttonZalogujSie.click();
     }

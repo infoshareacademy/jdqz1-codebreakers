@@ -1,10 +1,17 @@
 package pageobject.pages;
 
+import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
 import utils.waits.CustomWait;
+
+import java.util.concurrent.TimeUnit;
+
 import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
 
 public class HomeRegistrationPage {
@@ -94,7 +101,7 @@ public class HomeRegistrationPage {
         buttonZarejestrujSie.click();
     }
 
-    public String returnAlert() {
+    public String registerReturnAlertIncorrectPasswords() {
         customWait.waitForElementToBeClickable(buttonNavZarejestruj);
         clickOnRegisterTab();
         customWait.waitForElementToBeVisible(fieldEmailRegister);
@@ -102,6 +109,19 @@ public class HomeRegistrationPage {
         typeInPassword(password);
         typeInConfirmPassword(password.substring(0, 7));
         clickOnRegistrationButton();
+        return alertElement.getText();
+    }
+
+    @Test
+    public String registerReturnAlertPasswordTooShort()  {
+        customWait.waitForElementToBeClickable(buttonNavZarejestruj);
+        clickOnRegisterTab();
+        customWait.waitForElementToBeVisible(fieldEmailRegister);
+        typeInEmail(email);
+        typeInPassword(password.substring(0, 3));
+        typeInConfirmPassword(password.substring(0, 3));
+        clickOnRegistrationButton();
+        customWait.waitForElementToBeVisible(alertElement);
         return alertElement.getText();
     }
 }

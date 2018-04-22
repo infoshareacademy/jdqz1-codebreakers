@@ -32,7 +32,7 @@ public class LoginTests extends BaseTest {
 
         homeLoginPage.zalogujSie(emailLogin, hasloLogin);
 
-        assertEquals("Alert text is not correct.", "Nieprawidłowe dane logowania. Spróbuj ponown", homeLoginPage
+        assertEquals("Alert text is not correct.", "Nieprawidłowe dane logowania. Spróbuj ponownie", homeLoginPage
                 .getTextDivAlertLogin());
     }
 

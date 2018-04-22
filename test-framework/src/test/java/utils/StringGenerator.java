@@ -8,7 +8,7 @@ public class StringGenerator {
         String SALTCHARS = "abcdefghijklmnopqrstqwxyz";
         StringBuilder salt = new StringBuilder();
         Random random = new Random();
-        while (salt.length() < length) { // length of the random string.
+        while (salt.length() < length) {
             int index = (int) (random.nextFloat() * SALTCHARS.length());
             salt.append(SALTCHARS.charAt(index));
         }
