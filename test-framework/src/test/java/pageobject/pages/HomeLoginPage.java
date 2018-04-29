@@ -62,6 +62,8 @@ public class HomeLoginPage {
     }
 
     public void zalogujSie(String emailLogin, String hasloLogin) {
+        customWait.waitForElementToBeVisible(fieldEmailLogin);
+        customWait.waitForElementToBeVisible(fieldHasloLogin);
         typeInEmailLogin(emailLogin);
         typeInHasloLogin(hasloLogin);
         clickOnButtonZalogujSie();
