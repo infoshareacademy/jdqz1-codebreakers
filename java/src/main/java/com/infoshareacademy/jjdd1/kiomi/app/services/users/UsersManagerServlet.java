@@ -21,13 +21,13 @@ import java.util.List;
 public class UsersManagerServlet extends HttpServlet {
 
     UsersPersist users = new UsersPersist();
-    UsersList newUser = new UsersList();
+    User newUser = new User();
 
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<UsersList> usersLists = users.getAllUsers();
-        req.setAttribute("usersLists", usersLists);
+        List<User> user = users.getAllUsers();
+        req.setAttribute("user", user);
         RequestDispatcher dispatcher = req.getRequestDispatcher("//TODO name of html/jsp file");
         dispatcher.forward(req,resp);
 
@@ -71,8 +71,8 @@ public class UsersManagerServlet extends HttpServlet {
 
 
 
-        List<UsersList> currentUsersLists = users.getAllUsers();
-        req.setAttribute("usersLists", currentUsersLists);
+        List<User> currentUser = users.getAllUsers();
+        req.setAttribute("usersLists", currentUser);
         RequestDispatcher dispatcher = req.getRequestDispatcher("//TODO name of html/jsp file");
         dispatcher.forward(req,resp);
 

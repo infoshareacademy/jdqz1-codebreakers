@@ -104,4 +104,5 @@ public class EbayReader {
         }.getType());
 
     }
+
 }
