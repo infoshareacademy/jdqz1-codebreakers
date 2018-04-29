@@ -1,18 +1,13 @@
 package pageobject.pages;
 
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
 import utils.waits.CustomWait;
 
-import java.util.concurrent.TimeUnit;
-
 import static utils.GetRandomEmailAndPassword.GetRandomEmail.email;
+import static utils.GetRandomEmailAndPassword.GetRandomPassword.password;
 
 public class HomeRegistrationPage {
 

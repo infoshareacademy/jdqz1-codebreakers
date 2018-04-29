@@ -14,6 +14,7 @@ import org.openqa.selenium.support.PageFactory;
 import pageobject.pages.HomeRegistrationPage;
 import utils.driver.WebDriverCreators;
 import utils.driver.WebDriverProvider;
+
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;

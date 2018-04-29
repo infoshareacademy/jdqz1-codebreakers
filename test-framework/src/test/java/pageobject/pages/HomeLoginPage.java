@@ -4,9 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.waits.CustomWait;
-import static utils.data.Constants.*;
 
 import java.util.List;
+
+import static utils.data.Constants.searchPhrase;
 
 public class HomeLoginPage {
 
